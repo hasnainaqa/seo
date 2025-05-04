@@ -1,0 +1,4 @@
+# we don't need this file when we have eslint.config.mjs but still some editotrs look for that.
+node_modules/
+.next/
+out/

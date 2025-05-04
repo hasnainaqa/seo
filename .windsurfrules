@@ -1,0 +1,95 @@
+# SEO Analytics Guidelines
+
+## 1. General Project Setup
+
+- **Frameworks & Libraries:** Next.js 15, React 19, Tailwind CSS v4, shadcn/ui, React Hook Form, Zod (for validation)
+- **Package Manager:** Use `npm` for all package management (`npm install`, `npm update`, etc.)
+- **Language:** TypeScript with strict type checking enabled
+- **Components:**
+  - Prefer React Server Components (RSCs) by default
+  - Only use Client Components (`"use client"`) when necessary for interactivity or browser-specific APIs
+  - Create reusable components in appropriate directories based on their purpose
+- **Types:**
+  - Place shared types in the `types` directory
+  - Define local types in the same component or file where they're used
+
+## 2. Development Workflow
+
+- **DO NOT RUN DEV SERVER:** Please **do not** run development server `npm run dev`. The development server is managed separately by the user in a dedicated terminal.
+- **Environment Variables:**
+  - Manage secrets and configurations using `.env` files (`.env.local`, `.env.development`, `.env.production`)
+  - **Never** commit sensitive information directly into the codebase
+  - Access variables using `process.env.VARIABLE_NAME`
+- **Code Quality:**
+  - Follow TypeScript best practices and leverage its type safety features
+  - Use ESLint and Prettier for code formatting and quality checks
+
+## 3. UI & Styling (Tailwind CSS v4 & shadcn/ui)
+
+- **Adding shadcn Components:**
+  - Use the command: `npx shadcn@latest add <component-name>`
+  - **IMPORTANT:** Before adding, **always check** if the component already exists in `components/ui/`
+- **Tailwind CSS Usage:**
+  - Follow Tailwind CSS v4 conventions (use `size-*` instead of `w-*`/`h-*` when dimensions are equal)
+  - Use CSS variables for theme colors defined in `app/globals.css`
+- **Accessibility:**
+  - Implement accessibility best practices (semantic HTML, ARIA attributes, keyboard navigation, color contrast)
+  - Test components with screen readers and keyboard navigation
+- **Shadcn Theme Configuration**
+  - Theme config in `app/globals.css` using `@theme inline`
+  - No separate tailwind.config.ts file needed
+  - CSS variables for theme colors
+
+## 4. Forms (React Hook Form & Zod)
+
+- **Form Library:** Use React Hook Form for all form state management and handling
+- **Validation:**
+  - Define validation logic using Zod schemas in `lib/validation-schemas.ts`
+  - Implement **both** client-side and server-side validation using the **same** Zod schema
+- **Example flow:**
+  - Refer to `actions/setting-actions.ts`, `components/forms/general-setting-form.tsx`, and `lib/validation-schemas.ts`
+  - Always follow this established pattern when creating new forms
+
+## 5. Backend & API
+
+- **Implementation:**
+  - Use Next.js API Routes (`app/api/.../route.ts`) for fetching data
+  - Use Server Actions (`actions/*.ts`) for mutations and form submissions
+- **Input Validation:**
+  - Validate all incoming data using Zod schemas from `lib/validation-schemas.ts`
+  - Return clear error responses on validation failure
+- **API Call:** Always use `apiClient` from `lib/api.ts` for API requests
+
+## 6. Database
+
+- **Prisma:** Use Prisma for database access via `lib/db.ts`
+- **Schema:** Maintain the Prisma schema in `prisma/schema.prisma`
+- **Migrations:** Use Prisma migrations for database schema changes
+
+## 7. SEO
+
+- **Sitemap:** Add new static pages to `app/sitemap.ts`
+- **Metadata:** Use `constructMetadata` function from `lib/seo/metadata.ts` for essential `<head>` tags
+- **Robots:** Manage global crawl rules in `app/robots.ts`
+- **Performance:**
+  - Optimize Core Web Vitals (LCP, CLS, FID)
+  - Use Next.js Image component for image optimization
+
+## 8. Code Structure & Conventions
+
+- **Directory Organization:**
+
+  - `app/`: Routing, layouts, pages, API routes
+  - `components/`: UI components (`ui/`, `shared/`, feature-specific)
+  - `lib/`: Utilities, constants, types, database client
+  - `actions/`: Server Actions
+  - `hooks/`: Custom React hooks
+  - `styles/`: Global styles in `app/globals.css`
+  - `public/`: Static assets
+  - `prisma/`: Prisma schema and migrations
+  - `types/`: Shared TypeScript types
+
+- **Naming Conventions:**
+  - PascalCase for components and types
+  - camelCase for variables and functions
+  - kebab-case for file names where appropriate
