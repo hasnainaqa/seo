@@ -30,7 +30,7 @@ Unlock powerful SEO analytics and keyword tracking with our advanced web-based p
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/seo-analytics.git
+   git clone https://github.com/hasainaqa/seo.git
 
 
 2. Install dependencies:
