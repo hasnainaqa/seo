@@ -34,9 +34,9 @@ Unlock powerful SEO analytics and keyword tracking with our advanced web-based p
 
 
 2. Install dependencies:
-  ```bash
-  cd seo-analytics
-  npm install -f
+    ```bash
+    cd seo-analytics
+    npm install -f
 
 
 3. Create a .env file in the root directory.
