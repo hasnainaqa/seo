@@ -39,8 +39,6 @@ Unlock powerful SEO analytics and keyword tracking with our advanced web-based p
   npm install -f
 
 
-  Set up your environment variables:
-
 3. Create a .env file in the root directory.
 
 Add your Google Search Console API credentials and other configuration details.
